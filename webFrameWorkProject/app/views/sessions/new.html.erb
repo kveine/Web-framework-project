@@ -1,0 +1,20 @@
+<div class="top_box">
+	<h1>Log in</h1>
+</div>
+<% content_for :title, "Log in"%>
+
+<div class="main_box">
+<%= form_for(:session, url: {controller: 'sessions', action: 'create'}) do |f| %>
+
+	<%= f.label :email %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :submitted_password %>
+
+    <%= f.submit "Sign in" %>
+    
+<% end %>
+
+<p>New user? <%= link_to "Sign up now!", sign_up_path %></p>	
+</div>

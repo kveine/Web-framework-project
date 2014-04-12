@@ -1,0 +1,33 @@
+<div class="top_box">
+	<h1> Register as a new user</h1>
+</div>
+<% content_for :title, "Sign up"%>
+
+<div class="main_box">
+<%= form_for @user, url: {controller: 'users', action: 'create'}, :html => { :multipart => true } do |t| %>
+	
+	<%= t.label(:email, 'Email address:') %><br/>
+	<%= t.text_field(:email) %><br/>
+
+	<%= t.label(:password, 'Password:') %><br/>
+	<%= t.password_field(:password) %><br/>
+
+	<%= t.label(:password_confirmation, 'Confirm Password:') %><br/>
+	<%= t.password_field(:password_confirmation) %><br/>
+
+	<%= t.label(:firstname, 'First name:')%><br/>
+	<%= t.text_field(:firstname)%><br/>
+	
+	<%= t.label(:surname, 'Surname:')%><br/>
+	<%= t.text_field(:surname)%><br/>
+
+	Upload profil picture<br/><br/>
+	<%= t.file_field :avatar %> <br/><br/>
+	
+	
+	<%= t.submit('Sign up!') %>
+	
+<% end %>
+
+<p>Already a user? <%= link_to "Log in now!", log_in_path %></p>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= yield(:title) %> </title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+   <%= stylesheet_link_tag "custom", media: "all" %>
+</head>
+<body>
+
+	<%= flash[:error] %>
+	
+
+	<nav>
+		<ul>
+			<%if @current_user%>
+				<li><a><%= link_to "Recipes", search_path %></a></li>
+				<li><a><%= link_to "Favourites", favourites_path %></a></li>
+				<li><a><%= link_to "Following", following_path %></a></li>
+				<li><a><%= link_to "Profile", profile_path %></a></li>
+				<li><a><%= link_to "Log out", log_out_path %></a></li>
+			<% else %>
+				<li><a><%= link_to "Search", search_path %></a></li>
+				<li><a><%= link_to "Sign up", sign_up_path %></a></li>
+				<li><a><%= link_to "Log in", log_in_path %></a></li>
+			<% end %>
+		</ul>
+	</nav>
+
+	<section>
+		<%= flash[:notice] %>
+		<%= yield %>
+	</section>
+	
+	<footer>
+		<p>footer</P>
+			<%= debug(params) %>
+	</footer>
+
+</body>
+</html>

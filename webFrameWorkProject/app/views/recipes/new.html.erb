@@ -1,0 +1,25 @@
+<div class="top_box">
+	<h1> Add new recipe</h1>
+</div>
+<div class="main_box">
+	<%= form_for @recipe, url: {controller: 'recipes', action: 'create'}, method: "get", :html => { :multipart => true } do |t| %>
+		
+		Recipe picture:<br/><br/>
+		<%= t.file_field :avatar %><br/><br/>
+
+		<%= t.label(:title, 'Title:') %><br/>
+		<%= t.text_field(:title) %><br/>
+		
+		<%= t.label(:ingredients, 'Ingredients:')%><br/>
+		<%= t.text_area(:ingredients)%><br/>
+		
+		<%= t.label(:instructions, 'Instructions:')%><br/>
+		<%= t.text_area(:instructions)%><br/><br/>
+
+		Choose a category:
+		<%= t.select :category_id, Category.all.collect{|p| [p.category, p.id]} %><br/><br/>
+
+		<%= t.submit('Save recipe!') %>
+	
+	<% end %>
+</div>

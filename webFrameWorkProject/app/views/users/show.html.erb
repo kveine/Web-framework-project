@@ -1,0 +1,23 @@
+
+<div class= "top_box">
+	<div class="profile_info">
+		<h3><%= @current_user.firstname %>
+		<%= @current_user.surname %></h3>
+		<%= @current_user.email %><br/>
+	</div>
+</div>
+<div class="main_box">
+	<h4><%= link_to "+ add a new recipe", newrecipe_path %></h4>
+
+	<div class="my_recipes">
+		<h4>My recipes</h4>
+		<% @current_user_recipes.each do |t| %>
+			<%= link_to t.title, show_path(:id => t.id) %><br/>
+		<% end %>
+	</div> 
+
+	<div class="profile_images">
+		<h4>Pictures</h4>
+	</div>
+
+</div>
