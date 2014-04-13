@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash.now[:notice] = "Login successful"
-      redirect_to profile_path
+      redirect_to user_path(:id => user.id)
  
       
      

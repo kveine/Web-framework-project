@@ -10,8 +10,9 @@
 	<% if @current_user %>
 		<h4><%= link_to "+ add a new recipe", newrecipe_path %></h4>
 	<% else %>
-		<h5>Log in to add recipes</h5>
+		<%= link_to "Log in to add recipes", log_in_path() %>
 	<% end %>
+	
 	<h3><%= @page_header %></h3>
 	<% @recipes.each do |t| %>
 		<%= link_to t.title, show_path(:id => t.id) %>

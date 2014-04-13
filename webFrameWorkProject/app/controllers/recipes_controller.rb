@@ -31,8 +31,8 @@ class RecipesController < ApplicationController
   end
   
   def results
-     search_param = params[:search]
-     @page_header = "Search results for: #{search_param}" 
+     search_params = params[:search]
+     @page_header = "Search results for: #{search_params}" 
      @recipes = Recipe.where("title = ?", params[:search])
      render 'search'
   end
@@ -42,7 +42,6 @@ class RecipesController < ApplicationController
     if @recipe == nil
       flash.now[:error] = "No such recipe exists"
     end
-
     @favourite = Favourite.new
   end
 
