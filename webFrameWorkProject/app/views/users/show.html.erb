@@ -9,12 +9,14 @@
 </div>
 
 <div class="main_box">
-	<%= form_for Following.new, url: {controller: 'users', action: 'follow'}, method: "get" do |t| %>
-			<%= t.hidden_field(:feed_id, :value => @user.feed.id) %>
-			<%= t.submit('Follow') %>
+	<% if @current_user != @user %>
+		<%= form_for Following.new, url: {controller: 'users', action: 'follow'}, method: "get" do |t| %>
+				<%= t.hidden_field(:feed_id, :value => @user.feed.id) %>
+				<%= t.submit('Follow') %><br/>
 		<% end %>
-	
-	<h4><%= link_to "+ add a new recipe", newrecipe_path %></h4>
+	<% else %>
+		<h4><%= link_to "+ add a new recipe", newrecipe_path %></h4>
+	<% end %>
 
 	<div class="my_recipes">
 		<h4>My recipes</h4>

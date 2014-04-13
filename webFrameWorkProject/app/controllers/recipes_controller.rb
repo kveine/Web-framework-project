@@ -12,8 +12,14 @@ class RecipesController < ApplicationController
     #@recipe = Recipe.new(recipe_params, :feed_id => @current_user.feed.id)
   	if @recipe.save!
       flash[:notice] = "Recipe saved"
-      redirect_to profile_path
-
+      @followings = Following.where(:feed_id == @recipe.feed).take
+      @to_users = @followings.user.email
+      @from_user = @recipe.feed.user.firstname
+      @title = @recipe.title
+      @ingredients = @recipe.ingredients
+      @instructions = @recipe.instructions
+      FollowingMailer.new_recipe_email(@to_users, @from_user, @title, @ingredients, @instructions).deliver
+      redirect_to user_path(:id => @current_user.id)
     else
       flash[:notice] = "Recipe not saved"
       render new
