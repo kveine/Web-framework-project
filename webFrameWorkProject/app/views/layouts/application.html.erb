@@ -18,7 +18,7 @@
 				<li><a><%= link_to "Recipes", search_path %></a></li>
 				<li><a><%= link_to "Favourites", favourites_path %></a></li>
 				<li><a><%= link_to "Following", following_path %></a></li>
-				<li><a><%= link_to "Profile", profile_path %></a></li>
+				<li><a><%= link_to "Profile", user_path(:id => @current_user.id) %></a></li>
 				<li><a><%= link_to "Log out", log_out_path %></a></li>
 			<% else %>
 				<li><a><%= link_to "Search", search_path %></a></li>

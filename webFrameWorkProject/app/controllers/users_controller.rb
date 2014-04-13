@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def new
-  	@user = User.new
+    @user = User.new
   end
   
   def create
     begin
-      user_params = params.require(:user).permit(:firstname, :surname, :email, :password, :password_confirmation)#, :avatar)
+      user_params = params.require(:user).permit(:firstname, :surname, :email, :password, :password_confirmation, :avatar)
       @user = User.new(user_params)
       if @user.save!
         @feed = Feed.new
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def profile
+  def show
     @current_user_recipes = @current_user.feed.recipes
     
   end

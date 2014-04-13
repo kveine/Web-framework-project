@@ -16,7 +16,8 @@ WebFrameWorkProject::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
 
-  get 'profile' => 'users#profile', :as => "profile"
+  #get 'profile' => 'users#profile', :as => "profile"
+  get 'user' => 'users#show'#, :as => "profile"
   
   get 'newrecipe' => 'recipes#new'
   get 'created' => 'recipes#create'
@@ -31,7 +32,7 @@ WebFrameWorkProject::Application.routes.draw do
   get 'favourites' => 'recipes#favourites', :as => 'favourites'
 
   get 'following' => 'users#following', :as => 'following'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
