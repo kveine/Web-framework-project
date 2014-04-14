@@ -7,6 +7,6 @@ class FollowingMailer < ActionMailer::Base
   	@title = title
   	@ingredients = ingredients
   	@instructions = instructions
-  	mail(to: @to_users, subject: 'New recipe from #{@from_user}')
+  	mail(to: @to_users, subject: 'New recipe')
   end
 end

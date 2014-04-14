@@ -2,20 +2,19 @@
 	<h3><%= @recipe.title %><br/></h3>
 </div>
 <div class="main_box">
-	<%= image_tag @recipe.avatar.url %>
-	<h5>Ingredients: </h5>
-	<%= @recipe.ingredients %><br/>
-	<h5>Instructions: </h5>
-	<%= @recipe.instructions %><br/>
-
-	<br/><br/>
-
-	<% if @current_user%>
-		<%= form_for @favourite, url: {controller: 'recipes', action: 'favourite'}, method: "get" do |t| %>
-			<%= t.hidden_field(:recipe_id, :value => @recipe.id) %>
-			<%= t.submit('Favourite') %>
+	<div class="show_recipe">
+		<%= image_tag @recipe.avatar.url %>
+		<h5>Ingredients: </h5>
+		<%= @recipe.ingredients %><br/>
+		<h5>Instructions: </h5>
+		<%= @recipe.instructions %><br/>
+	</div><br/><br/>
+		<% if @current_user%>
+			<%= form_for @favourite, url: {controller: 'recipes', action: 'favourite'}, method: "get" do |t| %>
+				<%= t.hidden_field(:recipe_id, :value => @recipe.id) %>
+				<%= t.submit('Favourite') %>
+			<% end %>
+		<% else %>
+			<%= link_to "Log in to favourite recipes!", log_in_path() %>
 		<% end %>
-	<% else %>
-		<%= link_to "Log in to favourite recipes!", log_in_path() %>
-	<% end %>
 </div>

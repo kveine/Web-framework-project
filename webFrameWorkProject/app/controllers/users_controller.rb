@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     begin
       user_params = params.require(:user).permit(:firstname, :surname, :email, :password, :password_confirmation, :avatar)
       @user = User.new(user_params)
+      @user.valid?
+      @user.errors.messages
       if @user.save!
         @feed = Feed.new
         @feed.user = @current_user
@@ -21,23 +23,25 @@ class UsersController < ApplicationController
       end
     rescue => e
       flash[:error] = e.message
+      redirect_to sign_up_path()
     end
   end
   
   def show
-    #@current_user_recipes = @current_user.feed.recipes
     @user = User.find(params[:id])
   end
 
   
   def follow
-    follow_params = params.require(:following).permit(:feed_id)
-    @follow = Following.new(follow_params)
-    @follow.user = @current_user
-    if @follow.save!
-      redirect_to following_path()
-    else
-        flash.now[:error] = "Could not follow user"
+    begin
+      follow_params = params.require(:following).permit(:feed_id)
+      @follow = Following.new(follow_params)
+      @follow.user = @current_user
+      if @follow.save!
+        redirect_to following_path()
+      end
+    rescue => e
+      flash[:error] = e.message
     end
   end
 

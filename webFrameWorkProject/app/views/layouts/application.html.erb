@@ -8,10 +8,6 @@
    <%= stylesheet_link_tag "custom", media: "all" %>
 </head>
 <body>
-
-	<%= flash[:error] %>
-	
-
 	<nav>
 		<ul>
 			<%if @current_user%>
@@ -30,7 +26,9 @@
 
 	<section>
 		<%= flash[:notice] %>
+		<%= flash[:error] %>
 		<%= yield %>
+
 	</section>
 	
 	<footer>

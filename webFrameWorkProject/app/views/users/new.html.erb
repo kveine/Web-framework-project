@@ -29,5 +29,15 @@
 	
 <% end %>
 
+<% if @user.errors.any? %>
+	<h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+<% end %>
+
 <p>Already a user? <%= link_to "Log in now!", log_in_path %></p>
 </div>

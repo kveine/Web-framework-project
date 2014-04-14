@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
       redirect_to user_path(:id => @current_user.id)
     else
       flash[:notice] = "Recipe not saved"
-      render new
+      render 'new'
     end
   end
 
@@ -44,21 +44,30 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    if params[:id]
+      @recipe = Recipe.find(params[:id])
+    else
+      @recipe = Recipe.find(params[:recipe_id])
+    end
     if @recipe == nil
-      flash.now[:error] = "No such recipe exists"
+      flash[:error] = "No such recipe exists"
     end
     @favourite = Favourite.new
   end
 
   def favourite
-    favourite_params =  params.require(:favourite).permit(:recipe_id)
-    @favourite = Favourite.new(favourite_params)
-    @favourite.user = @current_user
-    if @favourite.save!
+    begin
+      favourite_params =  params.require(:favourite).permit(:recipe_id)
+      @favourite = Favourite.new(favourite_params)
+      @favourite.user = @current_user
+      if @favourite.save!
+        redirect_to favourites_path()
+      else
+        flash[:error] = "Something went wrong"
+      end
+    rescue => e
+      flash[:error] = e.message
       redirect_to favourites_path()
-    else
-      flash.now[:error] = "Something went wrong"
     end
   end
 

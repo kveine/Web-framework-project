@@ -8,15 +8,9 @@ WebFrameWorkProject::Application.routes.draw do
   get 'sign_up' => 'users#new'
   post 'registered' => 'users#create'
 
-  #get 'signin' => 'sessions#new'
-
-  #match 'signin',  to: 'sessions#new',         via: 'get'
-  #match 'signout', to: 'sessions#destroy',     via: 'delete'
-
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
 
-  #get 'profile' => 'users#profile', :as => "profile"
   get 'user' => 'users#show'
   
   get 'newrecipe' => 'recipes#new'

@@ -116,3 +116,10 @@ footer{
 	height: 400px;
 	text-align: center;
 }
+
+.show_recipe{
+	margin: auto;
+	width: 60%;
+	border: dotted;
+	border-width: 1px;
+}
