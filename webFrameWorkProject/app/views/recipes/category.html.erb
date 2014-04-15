@@ -11,7 +11,13 @@
 		<% if @recipes != nil %>
 		<br/>
 			<% @recipes.each do |d|%>
-				<%= link_to d.title, show_path(:id => d.id) %>	
+				<div class="list_recipe">
+					<%= link_to d.title, show_path(:id => d.id) %>
+					<div class="by">
+						By: 
+						<%= link_to d.feed.user.firstname, user_path(:id => d.feed.user.id) %>
+					</div>
+				</div>	<br/>
 			<% end %>
 			<% if @recipes == nil %>
 				<p>No recipes added in choosen category :( </p>

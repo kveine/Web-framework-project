@@ -5,7 +5,8 @@
 		<h3><%= @user.firstname %>
 		<%= @user.surname %></h3>
 		<%= @user.email %><br/>
-		<%= @user.feed.recipes.count %>
+			<h5><%= @user.feed.recipes.count %> recipes </h5> 
+			<h5>Followed by <%= @user.feed.followings.count%> users</h5>
 	</div>
 </div>
 

@@ -10,15 +10,20 @@ class RecipesController < ApplicationController
                           :instructions => recipe_params[:instructions], :feed_id => @current_user.feed.id, 
                           :category_id => recipe_params[:category_id])
   	if @recipe.save!
-      @followings = Following.where("feed_id =?", @recipe.feed.id).take
+      @followings = Following.where("feed_id =?", @recipe.feed.id)
       if @followings != nil
-        @to_users = @followings.user.email
+        @to_users = ''
+        @followings.each do |a|
+          @to_users << a.user.email
+          @to_users << ','
+        end
+        #@to_users = [@followings.users.email]
         debugger
         @from_user = @recipe.feed.user.firstname
         @title = @recipe.title
         @ingredients = @recipe.ingredients
         @instructions = @recipe.instructions
-        FollowingMailer.new_recipe_email(@to_users[], @from_user, @title, @ingredients, @instructions).deliver
+        FollowingMailer.new_recipe_email(@to_users, @from_user, @title, @ingredients, @instructions).deliver
       end
       redirect_to user_path(:id => @current_user.id)
     else
