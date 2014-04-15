@@ -66,12 +66,16 @@ footer{
 	width: 74%;	
 }
 
+h5{
+	display: inline;
+}
+
 
 .top_box{
 	margin: auto;
 	margin-top: 10px;
 	width: 100%;
-	height: 100px;
+	height: 110px;
 	padding-top: 10px;
 	border: solid;
 	border-width: 1px;
@@ -108,11 +112,8 @@ footer{
 	text-align: left;
 }
 
-.profile_info_count{
-	float: right;
-	width: 40%;
-	text-align: left;
-	border: solid;
+.profile_info h3{
+	display: inline;
 }
 
 .my_recipes{
@@ -136,8 +137,8 @@ footer{
 	margin: auto;
 	width: 60%;
 	background-color: #f5fffa;
-	/*border: dotted;
-	border-width: 1px;*/
+	border: dotted;
+	border-width: 1px;
 }
 
 .list_recipe{

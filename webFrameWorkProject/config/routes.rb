@@ -15,6 +15,7 @@ WebFrameWorkProject::Application.routes.draw do
   
   get 'newrecipe' => 'recipes#new'
   get 'created' => 'recipes#create'
+  post 'created' => 'recipes#create'
 
   get 'search' => 'recipes#search'
   post 'results' => 'recipes#results'

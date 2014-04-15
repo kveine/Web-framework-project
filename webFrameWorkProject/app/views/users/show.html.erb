@@ -1,22 +1,24 @@
 
 <div class= "top_box">
-	<%= image_tag @user.avatar.url %>
+	<%= image_tag @user.avatar.url(:thumb) %>
 	<div class="profile_info">
 		<h3><%= @user.firstname %>
-		<%= @user.surname %></h3>
-		<%= @user.email %><br/>
-			<h5><%= @user.feed.recipes.count %> recipes </h5> 
-			<h5>Followed by <%= @user.feed.followings.count%> users</h5>
+		<%= @user.surname %></h3><br/><br/>
+		<%= @user.email %><br/><br/>
+		<h5><%= @user.feed.recipes.count %> recipes |</h5> 
+		<h5>Followed by <%= @user.feed.followings.count%> users</h5>
 	</div>
 </div>
 
 <div class="main_box">
 	<%= flash[:error] %>
-	<% if @current_user != @user %>
+	<% if @current_user != @user && @current_user%>
 		<%= form_for Following.new, url: {controller: 'users', action: 'follow'}, method: "get" do |t| %>
 				<%= t.hidden_field(:feed_id, :value => @user.feed.id) %>
 				<%= t.submit('Follow') %><br/>
 		<% end %>
+	<% elsif @current_user == nil %>
+		<h4><%= link_to "Log in to follow", log_in_path() %></h4>
 	<% else %>
 		<h4><%= link_to "+ add a new recipe", newrecipe_path %></h4>
 	<% end %>
@@ -32,6 +34,9 @@
 
 	<div class="profile_images">
 		<h3>Pictures</h3>
+		<% @user.feed.recipes.each do |p|%>
+			<%= image_tag p.avatar.url(:thumb) %>
+		<% end %>
 	</div>
 
 </div>

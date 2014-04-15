@@ -6,10 +6,10 @@
 		<div class="by">
 			by: <%= link_to @recipe.feed.user.firstname, user_path(:id => @recipe.feed.user.id) %><br/>
 		</div><br/>
-		<%= image_tag @recipe.avatar.url %>
-		<h5>Ingredients: </h5>
-		<%= @recipe.ingredients %><br/>
-		<h5>Instructions: </h5>
+		<%= image_tag @recipe.avatar.url(:small) %><br/><br/>
+		<h5>Ingredients: </h5><br/><br/>
+		<%= @recipe.ingredients %><br/><br/>
+		<h5>Instructions: </h5><br/><br/>
 		<%= @recipe.instructions %><br/>
 	</div><br/><br/>
 		<% if @current_user%>

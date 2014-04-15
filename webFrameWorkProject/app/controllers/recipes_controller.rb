@@ -3,22 +3,25 @@ class RecipesController < ApplicationController
   def new
 	 @recipe = Recipe.new
   end
-  
+ 
   def create
-    recipe_params = params.require(:recipe)#.permit(:avatar)
-  	@recipe = Recipe.new(:title => recipe_params[:title], :ingredients => recipe_params[:ingredients], 
-                          :instructions => recipe_params[:instructions], :feed_id => @current_user.feed.id, 
-                          :category_id => recipe_params[:category_id])
+    recipe_params = params.require(:recipe).permit(:title, :ingredients, :instructions, :category_id, :avatar)
+  	#@recipe = Recipe.new(:title => recipe_params[:title], :ingredients => recipe_params[:ingredients], 
+    #                      :instructions => recipe_params[:instructions], :feed_id => @current_user.feed.id, 
+    #                      :category_id => recipe_params[:category_id])
+
+    @recipe = Recipe.new(recipe_params)
+    @recipe.feed = @current_user.feed
+    debugger
   	if @recipe.save!
       @followings = Following.where("feed_id =?", @recipe.feed.id)
-      if @followings != nil
+      breakpoint
+      if @followings.present?
         @to_users = ''
         @followings.each do |a|
           @to_users << a.user.email
           @to_users << ','
         end
-        #@to_users = [@followings.users.email]
-        debugger
         @from_user = @recipe.feed.user.firstname
         @title = @recipe.title
         @ingredients = @recipe.ingredients

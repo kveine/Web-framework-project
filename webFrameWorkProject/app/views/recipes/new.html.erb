@@ -2,7 +2,7 @@
 	<h1> Add new recipe</h1>
 </div>
 <div class="main_box">
-	<%= form_for @recipe, url: {controller: 'recipes', action: 'create'}, method: "get", :html => { :multipart => true } do |t| %>
+	<%= form_for @recipe, url: {controller: 'recipes', action: 'create'}, :html => { :multipart => true } do |t| %>
 		
 		Recipe picture:<br/><br/>
 		<%= t.file_field :avatar %><br/><br/>
