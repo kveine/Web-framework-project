@@ -12,8 +12,8 @@ gem 'bcrypt-ruby'
 
 gem 'digest-crc', '~> 0.4.0'
 
+#gem 'paperclip', '~> 3.5.0'
 gem "paperclip", "~> 4.1"
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

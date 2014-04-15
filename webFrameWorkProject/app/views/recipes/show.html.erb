@@ -3,6 +3,9 @@
 </div>
 <div class="main_box">
 	<div class="show_recipe">
+		<div class="by">
+			by: <%= link_to @recipe.feed.user.firstname, user_path(:id => @recipe.feed.user.id) %><br/>
+		</div><br/>
 		<%= image_tag @recipe.avatar.url %>
 		<h5>Ingredients: </h5>
 		<%= @recipe.ingredients %><br/>
@@ -13,6 +16,12 @@
 			<%= form_for @favourite, url: {controller: 'recipes', action: 'favourite'}, method: "get" do |t| %>
 				<%= t.hidden_field(:recipe_id, :value => @recipe.id) %>
 				<%= t.submit('Favourite') %>
+			<% end %><br/>
+			<% if @recipe.feed.user == @current_user %>
+				<%= form_for @delete, url: {controller: 'recipes', action: 'delete'}, method: "get" do |d|%>
+					<%= d.hidden_field(:recipe_id, :value => @recipe.id)%>
+					<%= d.submit('Delete this recipe :(')%>
+				<% end %>
 			<% end %>
 		<% else %>
 			<%= link_to "Log in to favourite recipes!", log_in_path() %>

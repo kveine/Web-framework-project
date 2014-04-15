@@ -25,9 +25,14 @@ WebFrameWorkProject::Application.routes.draw do
   get 'unfavourite' => 'recipes#unfavourite', :as => 'unfavourite'
   get 'favourites' => 'recipes#favourites', :as => 'favourites'
 
+  get 'delete' => 'recipes#delete', :as => 'delete'
+
   get 'follow' => 'users#follow', :as => 'follow'
   get 'unfollow' => 'users#unfollow', :as => 'unfollow'
   get 'following' => 'users#following', :as => 'following'
+
+  get 'category' => 'recipes#category', :as => 'category'
+  get 'category_result' => 'recipes#category_result', :as => 'category_result'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

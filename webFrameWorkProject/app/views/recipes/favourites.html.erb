@@ -1,9 +1,15 @@
 <div class="top_box">	
-	<h3>My favourite recipes</h3>
+	<h1>My favourite recipes</h1>
 </div>
 <div class="main_box">
 	<% @current_user.favourites.each do |t| %>
-		<%= link_to t.recipe.title, show_path(:recipe_id => t.recipe_id) %>
+		<div class="list_recipe">
+			<%= link_to t.recipe.title, show_path(:recipe_id => t.recipe_id) %>
+			<div class="by">
+				By: 
+				<%= link_to t.recipe.feed.user.firstname, user_path(:id => t.recipe.feed.user.id) %>
+			</div>
+		</div>
 		
 		<%= form_for Favourite.new, url: {controller: 'recipes', action: 'unfavourite'}, method: "get" do |d| %>
 			<%= d.hidden_field(:recipe_id, :value => t.recipe.id) %>

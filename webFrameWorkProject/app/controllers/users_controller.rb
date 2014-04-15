@@ -42,6 +42,7 @@ class UsersController < ApplicationController
       end
     rescue => e
       flash[:error] = e.message
+      redirect_to following_path()
     end
   end
 

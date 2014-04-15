@@ -6,6 +6,9 @@ WebFrameWorkProject::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  #paperclip
+  Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-6.8.9-Q8'
+
   # Do not eager load code on boot.
   config.eager_load = false
 

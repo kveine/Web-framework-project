@@ -9,16 +9,17 @@ class RecipesController < ApplicationController
   	@recipe = Recipe.new(:title => recipe_params[:title], :ingredients => recipe_params[:ingredients], 
                           :instructions => recipe_params[:instructions], :feed_id => @current_user.feed.id, 
                           :category_id => recipe_params[:category_id])
-    #@recipe = Recipe.new(recipe_params, :feed_id => @current_user.feed.id)
   	if @recipe.save!
-      flash[:notice] = "Recipe saved"
-      @followings = Following.where(:feed_id == @recipe.feed).take
-      @to_users = @followings.user.email
-      @from_user = @recipe.feed.user.firstname
-      @title = @recipe.title
-      @ingredients = @recipe.ingredients
-      @instructions = @recipe.instructions
-      FollowingMailer.new_recipe_email(@to_users, @from_user, @title, @ingredients, @instructions).deliver
+      @followings = Following.where("feed_id =?", @recipe.feed.id).take
+      if @followings != nil
+        @to_users = @followings.user.email
+        debugger
+        @from_user = @recipe.feed.user.firstname
+        @title = @recipe.title
+        @ingredients = @recipe.ingredients
+        @instructions = @recipe.instructions
+        FollowingMailer.new_recipe_email(@to_users[], @from_user, @title, @ingredients, @instructions).deliver
+      end
       redirect_to user_path(:id => @current_user.id)
     else
       flash[:notice] = "Recipe not saved"
@@ -27,19 +28,31 @@ class RecipesController < ApplicationController
   end
 
   def delete
-  	@recipe = Recipes.destroy
+    delete_params = params.require(:recipe).permit(:recipe_id)
+    @delete = Recipe.where("id = ?", delete_params[:recipe_id]).take 
+    @delete.destroy
+    @delete.save
+
+    @delete_favourite = Favourite.where("recipe_id = ?", delete_params[:recipe_id])
+    @delete_favourite.each do |t|
+      t.destroy
+      t.save
+    end
+
+    redirect_to user_path(:id => @current_user.id)
   end
 
   def search
     @page_header = "Latest recipes"
     @recipes = Recipe.all.reverse
-    #@user = Recipe.feed.users.email
+    @users = nil
   end
   
   def results
      search_params = params[:search]
      @page_header = "Search results for: #{search_params}" 
-     @recipes = Recipe.where("title = ?", params[:search])
+     @recipes = Recipe.find_by_sql("SELECT * FROM recipes WHERE title LIKE '%#{params[:search]}%'")
+     @users = User.find_by_sql("SELECT * FROM users WHERE firstname LIKE '%#{params[:search]}%'")
      render 'search'
   end
 
@@ -53,6 +66,7 @@ class RecipesController < ApplicationController
       flash[:error] = "No such recipe exists"
     end
     @favourite = Favourite.new
+    @delete = Recipe.new
   end
 
   def favourite
@@ -62,8 +76,6 @@ class RecipesController < ApplicationController
       @favourite.user = @current_user
       if @favourite.save!
         redirect_to favourites_path()
-      else
-        flash[:error] = "Something went wrong"
       end
     rescue => e
       flash[:error] = e.message
@@ -82,6 +94,17 @@ class RecipesController < ApplicationController
 
   def favourites
 
+  end
+
+  def category
+    @recipes = nil
+  end
+
+  def category_result
+    category_params = params.require(:category).permit(:id)
+    @recipes = Recipe.where("category_id =?", category_params[:id])
+
+    render 'category'
   end
 
 end

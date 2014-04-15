@@ -1,14 +1,16 @@
 <div class="top_box">	
-	<h3>Followings</h3>
+	<h1>Followings</h1>
 </div>
 <div class="main_box">
 	<% @current_user.followings.each do |t| %>
-		<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
-		
+		<div class="list_recipe">
+			<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
+		</div>
 		<%= form_for Following.new, url: {controller: 'users', action: 'unfollow'}, method: "get" do |d| %>
 			<%= d.hidden_field(:feed_id, :value => t.feed.id) %>
 			<%= d.submit('Unfollow') %>
 		<% end %>
+
 		<br/>
 	
 	<% end %>

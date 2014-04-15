@@ -10,6 +10,7 @@
 </div>
 
 <div class="main_box">
+	<%= flash[:error] %>
 	<% if @current_user != @user %>
 		<%= form_for Following.new, url: {controller: 'users', action: 'follow'}, method: "get" do |t| %>
 				<%= t.hidden_field(:feed_id, :value => @user.feed.id) %>
@@ -20,14 +21,16 @@
 	<% end %>
 
 	<div class="my_recipes">
-		<h4>My recipes</h4>
+		<h3>My Recipes</h3>
 		<% @user.feed.recipes.each do |t| %>
-			<%= link_to t.title, show_path(:id => t.id) %><br/>
+			<div class="list_recipe">
+				<%= link_to t.title, show_path(:id => t.id) %>
+			</div><br/>
 		<% end %>
 	</div> 
 
 	<div class="profile_images">
-		<h4>Pictures</h4>
+		<h3>Pictures</h3>
 	</div>
 
 </div>

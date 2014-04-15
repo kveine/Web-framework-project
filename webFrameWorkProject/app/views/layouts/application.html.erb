@@ -12,13 +12,14 @@
 		<ul>
 			<%if @current_user%>
 				<li><a><%= link_to "Recipes", search_path %></a></li>
+				<li><a><%= link_to "Categories", category_path %></a></li>
 				<li><a><%= link_to "Favourites", favourites_path %></a></li>
 				<li><a><%= link_to "Following", following_path %></a></li>
 				<li><a><%= link_to "Profile", user_path(:id => @current_user.id) %></a></li>
 				<li><a><%= link_to "Log out", log_out_path %></a></li>
 			<% else %>
 				<li><a><%= link_to "Search", search_path %></a></li>
-				<li><a><%= link_to "Sign up", sign_up_path %></a></li>
+				<li><a><%= link_to "Sign up", sign_up_path %></a></liS>
 				<li><a><%= link_to "Log in", log_in_path %></a></li>
 			<% end %>
 		</ul>
@@ -26,7 +27,6 @@
 
 	<section>
 		<%= flash[:notice] %>
-		<%= flash[:error] %>
 		<%= yield %>
 
 	</section>

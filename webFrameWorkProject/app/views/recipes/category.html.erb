@@ -1,0 +1,21 @@
+<div class="top_box">	
+	<h1>Browse by category </h1>
+</div>
+<div class="main_box">
+		<%= form_for Category.new, url: {controller: 'recipes', action: 'category_result'},  method: "get" do |t|%>
+			<%= t.select :id, Category.all.collect{|p| [p.category, p.id]} %>
+			<%= t.submit('Browse by category!')%>
+		<% end %>
+
+
+		<% if @recipes != nil %>
+		<br/>
+			<% @recipes.each do |d|%>
+				<%= link_to d.title, show_path(:id => d.id) %>	
+			<% end %>
+			<% if @recipes == nil %>
+				<p>No recipes added in choosen category :( </p>
+			<% end %>
+		<% end %>
+
+</div>

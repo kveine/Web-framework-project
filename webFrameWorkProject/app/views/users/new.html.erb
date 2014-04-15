@@ -4,6 +4,8 @@
 <% content_for :title, "Sign up"%>
 
 <div class="main_box">
+	<%= flash[:error] %>
+	<%= flash[:notice] %>
 <%= form_for @user, url: {controller: 'users', action: 'create'}, :html => { :multipart => true } do |t| %>
 	
 	<%= t.label(:email, 'Email address:') %><br/>

@@ -14,10 +14,29 @@
 	<% end %>
 	
 	<h3><%= @page_header %></h3>
+	<% if @users != nil %>
+			<div class="search_result_header">
+				Recipes: 
+			</div></br>
+		<% end %>
 	<% @recipes.each do |t| %>
-		<%= link_to t.title, show_path(:id => t.id) %>
-		By: 
-		<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
-		<br/>
+		<div class="list_recipe">
+			<%= link_to t.title, show_path(:id => t.id) %>
+			<div class="by">
+				By: 
+				<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
+			</div>	
+		</div><br/>
+	<% end %>
+
+	<% if @users != nil %>
+		<div class="search_result_header">
+			Users: 
+		</div><br/>
+		<% @users.each do |d| %>
+			<div class="list_recipe">
+				<%= link_to d.firstname, user_path(:id => d.id) %>
+			</div><br/>
+		<% end %>
 	<% end %>
 </div>

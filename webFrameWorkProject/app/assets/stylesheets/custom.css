@@ -7,6 +7,7 @@ body{
 	background: #dcdcdc;
 	text-align:center;
 	font-family: "Helvetica", sans-serif;
+	/*color: grey;*/
 }
 
 section{
@@ -76,6 +77,8 @@ footer{
 	border-width: 1px;
 	border-color: grey;
 	background: url('background.png');
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	color: grey;
 }
 
 .main_box{
@@ -94,10 +97,16 @@ footer{
 	color: #89c;
 }
 
+.main_box h3{
+	font-family: "Brush Script MT", cursive;
+}
+
 .profile_info{
 	float: right;
 	width: 40%;
+	height: 100%;
 	text-align: left;
+	text-decoration: 
 }
 
 .my_recipes{
@@ -120,6 +129,32 @@ footer{
 .show_recipe{
 	margin: auto;
 	width: 60%;
-	border: dotted;
-	border-width: 1px;
+	background-color: #f5fffa;
+	/*border: dotted;
+	border-width: 1px;*/
+}
+
+.list_recipe{
+	margin: auto;
+	width: 30%;
+	text-align: center;
+	background-color: #f5fffa;
+	/*border: dotted;
+	border-width: 1px;*/
+}
+
+.by{
+	float: right;
+	width: 50%;
+	font-style: italic;
+	font-size: 90%;
+	text-align: center;
+	color: grey;
+}
+
+.search_result_header{
+	margin: auto;
+	width: 30%;
+	border-bottom: solid;
+	border-bottom-width: 1px;
 }

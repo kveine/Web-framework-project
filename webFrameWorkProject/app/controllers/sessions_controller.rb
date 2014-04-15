@@ -9,13 +9,10 @@ class SessionsController < ApplicationController
     
     if user
       session[:user_id] = user.id
-      flash.now[:notice] = "Login successful"
       redirect_to user_path(:id => user.id)
  
-      
-     
     else
-      flash.now[:notice] = "Login unsuccessful"
+      flash[:notice] = "Login unsuccessful"
       render "new"
     end
   
