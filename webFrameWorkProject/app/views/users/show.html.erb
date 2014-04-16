@@ -1,6 +1,6 @@
 
 <div class= "top_box">
-	<%= image_tag @user.avatar.url(:thumb) %>
+	<%= image_tag @user.avatar.url(:small) %>
 	<div class="profile_info">
 		<h3><%= @user.firstname %>
 		<%= @user.surname %></h3><br/><br/>
@@ -26,7 +26,7 @@
 	<div class="my_recipes">
 		<h3>My Recipes</h3>
 		<% @user.feed.recipes.each do |t| %>
-			<div class="list_recipe">
+			<div class="list_recipe_profile">
 				<%= link_to t.title, show_path(:id => t.id) %>
 			</div><br/>
 		<% end %>

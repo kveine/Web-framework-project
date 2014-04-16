@@ -21,6 +21,7 @@
 		<% end %>
 	<% @recipes.each do |t| %>
 		<div class="list_recipe">
+			<%= image_tag t.avatar.url(:thumb)%>
 			<%= link_to t.title, show_path(:id => t.id) %>
 			<div class="by">
 				By: 

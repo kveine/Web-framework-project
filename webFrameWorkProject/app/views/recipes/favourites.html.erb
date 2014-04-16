@@ -4,6 +4,7 @@
 <div class="main_box">
 	<% @current_user.favourites.each do |t| %>
 		<div class="list_recipe">
+			<%= image_tag t.recipe.avatar.url(:thumb)%>
 			<%= link_to t.recipe.title, show_path(:recipe_id => t.recipe_id) %>
 			<div class="by">
 				By: 
