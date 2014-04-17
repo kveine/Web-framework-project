@@ -34,12 +34,10 @@ class RecipesController < ApplicationController
     delete_params = params.require(:recipe).permit(:recipe_id)
     @delete = Recipe.where("id = ?", delete_params[:recipe_id]).take 
     @delete.destroy
-    @delete.save
 
     @delete_favourite = Favourite.where("recipe_id = ?", delete_params[:recipe_id])
     @delete_favourite.each do |t|
       t.destroy
-      t.save
     end
 
     redirect_to user_path(:id => @current_user.id)
