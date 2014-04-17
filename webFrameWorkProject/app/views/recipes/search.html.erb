@@ -18,7 +18,7 @@
 			<div class="search_result_header">
 				Recipes: 
 			</div></br>
-		<% end %>
+	<% end %>
 	<% @recipes.each do |t| %>
 		<div class="list_recipe">
 			<%= image_tag t.avatar.url(:thumb)%>
@@ -36,6 +36,7 @@
 		</div><br/>
 		<% @users.each do |d| %>
 			<div class="list_recipe">
+				<%= image_tag d.avatar.url(:thumb) %>
 				<%= link_to d.firstname, user_path(:id => d.id) %>
 			</div><br/>
 		<% end %>

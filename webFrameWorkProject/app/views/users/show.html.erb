@@ -1,6 +1,6 @@
 
 <div class= "top_box">
-	<%= image_tag @user.avatar.url(:small) %>
+		<%= image_tag @user.avatar.url(:small) %>
 	<div class="profile_info">
 		<h3><%= @user.firstname %>
 		<%= @user.surname %></h3><br/><br/>
@@ -33,7 +33,7 @@
 	</div> 
 
 	<div class="profile_images">
-		<h3>Pictures</h3>
+		<h3>Recipe pictures</h3>
 		<% @user.feed.recipes.each do |p|%>
 			<%= image_tag p.avatar.url(:thumb) %>
 		<% end %>

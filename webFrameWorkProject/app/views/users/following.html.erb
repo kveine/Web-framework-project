@@ -3,15 +3,14 @@
 </div>
 <div class="main_box">
 	<% @current_user.followings.each do |t| %>
-		<div class="list_recipe">
-			<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
-		</div>
-		<%= form_for Following.new, url: {controller: 'users', action: 'unfollow'}, method: "get" do |d| %>
-			<%= d.hidden_field(:feed_id, :value => t.feed.id) %>
-			<%= d.submit('Unfollow') %>
-		<% end %>
+			<div class="list_followings_picture">
+				<%= image_tag t.feed.user.avatar.url(:thumb) %><br/>
+				<%= link_to t.feed.user.firstname, user_path(:id => t.feed.user.id) %>
 
-		<br/>
-	
+				<%= form_for Following.new, url: {controller: 'users', action: 'unfollow'}, method: "get" do |d| %>
+					<%= d.hidden_field(:feed_id, :value => t.feed.id) %>
+					<%= d.submit('Unfollow') %>
+				<% end %>
+			</div><br/>
 	<% end %>
 </div>

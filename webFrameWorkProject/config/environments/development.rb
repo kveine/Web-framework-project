@@ -30,14 +30,14 @@ WebFrameWorkProject::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # derp
+  # using gmail for sending emails
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'example.com',
-  user_name:            'kristinkveine',
-  password:             'kr0kk0d1ll3',
+  user_name:            'my.recipe.web',
+  password:             'webframeworkproject',
   authentication:       'plain',
   enable_starttls_auto: true  }
 end

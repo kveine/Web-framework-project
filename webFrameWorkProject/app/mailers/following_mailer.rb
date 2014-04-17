@@ -1,5 +1,5 @@
 class FollowingMailer < ActionMailer::Base
-  default 	from: "kristinkveine@gmail.com"
+  default 	from: "my.recipe.web@gmail.com"
 
 
   def new_recipe_email(to_users, from_user, title, ingredients, instructions)

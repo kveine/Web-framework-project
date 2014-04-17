@@ -2,7 +2,7 @@ class CreateRecipes < ActiveRecord::Migration
   def change
     create_table :recipes do |t|
 		t.string :title
-		t.string :catogory
+		t.string :catogory_id
 		t.string :ingredients
 		t.string :instructions
 		t.integer :feed_id

@@ -12,18 +12,19 @@
 		<h5>Instructions: </h5><br/><br/>
 		<%= @recipe.instructions %><br/>
 	</div><br/><br/>
-		<% if @current_user%>
-			<%= form_for @favourite, url: {controller: 'recipes', action: 'favourite'}, method: "get" do |t| %>
-				<%= t.hidden_field(:recipe_id, :value => @recipe.id) %>
-				<%= t.submit('Favourite') %>
-			<% end %><br/>
-			<% if @recipe.feed.user == @current_user %>
-				<%= form_for @delete, url: {controller: 'recipes', action: 'delete'}, method: "get" do |d|%>
-					<%= d.hidden_field(:recipe_id, :value => @recipe.id)%>
-					<%= d.submit('Delete this recipe :(')%>
-				<% end %>
+		
+	<% if @current_user%>
+		<%= form_for @favourite, url: {controller: 'recipes', action: 'favourite'}, method: "get" do |t| %>
+			<%= t.hidden_field(:recipe_id, :value => @recipe.id) %>
+			<%= t.submit('Favourite') %>
+		<% end %><br/>
+		<% if @recipe.feed.user == @current_user %>
+			<%= form_for @delete, url: {controller: 'recipes', action: 'delete'}, method: "get" do |d|%>
+				<%= d.hidden_field(:recipe_id, :value => @recipe.id)%>
+				<%= d.submit('Delete this recipe :(')%>
 			<% end %>
-		<% else %>
-			<%= link_to "Log in to favourite recipes!", log_in_path() %>
 		<% end %>
+	<% else %>
+			<%= link_to "Log in to favourite recipes!", log_in_path() %>
+	<% end %>
 </div>
